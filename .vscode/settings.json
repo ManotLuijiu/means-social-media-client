@@ -1,0 +1,15 @@
+{
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "window.zoomLevel": 0,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "html": "html"
+  },
+  "emmet.syntaxProfiles": {
+    "html": {
+      "filters": "bem"
+    }
+  },
+  "cSpell.ignoreWords": ["ecmascript", "prettierrc"]
+}
