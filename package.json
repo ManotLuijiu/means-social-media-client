@@ -3,18 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.12",
+    "@craco/craco": "^6.1.1",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "@tailwindcss/typography": "^0.4.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^13.0.6",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.12.3",
+    "i18next": "^19.9.2",
+    "luxon": "^1.26.0",
+    "moment": "^2.29.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
+    "react-i18next": "^11.8.10",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "semantic-ui-react": "^2.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "craco start",
+    "build": "craco build",
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json,html}' --config ./.prettierrc",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +51,9 @@
     ]
   },
   "devDependencies": {
+    "@semantic-ui-react/craco-less": "^1.2.1",
+    "@tailwindcss/postcss7-compat": "^2.0.4",
+    "autoprefixer": "^9.8.6",
     "eslint": "^7.22.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -46,7 +65,10 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^4.3.8",
     "lint-staged": ">=10",
-    "prettier": "^2.2.1"
+    "postcss": "^7.0.35",
+    "prettier": "^2.2.1",
+    "semantic-ui-less": "^2.4.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.4"
   },
   "husky": {
     "hooks": {
@@ -54,6 +76,8 @@
     }
   },
   "lint-staged": {
-    "./**/*.{js,jsx,ts,tsx}": ["eslint --cache --fix"]
+    "./**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix"
+    ]
   }
 }

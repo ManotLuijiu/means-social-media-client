@@ -11,5 +11,14 @@
       "filters": "bem"
     }
   },
-  "cSpell.ignoreWords": ["ecmascript", "prettierrc"]
+  "cSpell.ignoreWords": [
+    "color",
+    "ecmascript",
+    "get",
+    "msapplication",
+    "notranslate",
+    "prettierrc",
+    "tile",
+    "ttfb"
+  ]
 }

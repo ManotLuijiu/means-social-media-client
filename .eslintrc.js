@@ -15,7 +15,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaFeatures: {
-      jsx: false,
+      jsx: true,
     },
     ecmaVersion: 12,
     sourceType: 'module',
@@ -27,6 +27,7 @@ module.exports = {
   },
   plugins: ['simple-import-sort', 'react'],
   rules: {
+    'no-console': 'off',
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
   },
 };

@@ -1,15 +1,12 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ApolloProvider from './ApolloProvider';
+import './i18n';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+import 'semantic-ui-less/semantic.less'; // eslint-disable-line
+import './index.css';
+
+ReactDOM.render(ApolloProvider, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

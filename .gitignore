@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Secrets
+.env.local
+.env.development
+.env.test
+.env.production
+.env
