@@ -6,3 +6,4 @@
 @secondaryColor : @grey;
 @pageBackground: #eff0f1;
 @blue           : #0984e3;
+@fontName : 'Sarabun';

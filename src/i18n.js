@@ -1,28 +1,50 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import Backend from 'i18next-xhr-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
-const resources = {
-  en: {
-    translation: {
-      home: 'Home',
+i18n
+  .use(Backend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: 'en',
+    debug: true,
+    interpolation: {
+      escapeValue: false,
     },
-  },
-  th: {
-    translation: {
-      home: 'หน้าแรก',
+    react: {
+      bindI18n: 'languageChanged',
+      bindI18nStore: '',
+      transEmptyNodeValue: '',
+      transSupportBasicHtmlNodes: true,
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
+      useSuspense: false,
     },
-  },
-};
+  });
 
-i18n.use(initReactI18next).init({
-  resources,
-  lng: 'en',
+// const resources = {
+//   en: {
+//     translation: {
+//       home: 'Home',
+//     },
+//   },
+//   th: {
+//     translation: {
+//       home: 'หน้าแรก',
+//     },
+//   },
+// };
 
-  keySeparator: false,
+// i18n.use(initReactI18next).init({
+//   resources,
+//   lng: 'en',
 
-  interpolation: {
-    escapeValue: false,
-  },
-});
+//   keySeparator: false,
+
+//   interpolation: {
+//     escapeValue: false,
+//   },
+// });
 
 export default i18n;

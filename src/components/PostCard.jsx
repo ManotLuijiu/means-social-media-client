@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Image, Button, Icon, Label } from 'semantic-ui-react';
 import moment from 'moment';
+import 'moment/locale/th';
 import PropTypes from 'prop-types';
+
+moment().locale('th');
 
 export default function PostCard({
   post: { id, createdAt, username, body, likeCount, commentCount },
@@ -25,7 +28,7 @@ export default function PostCard({
         />
         <Card.Header>{username}</Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
-          {moment(createdAt).fromNow(true)}
+          {moment(createdAt).startOf('day').fromNow()}
         </Card.Meta>
         <Card.Description>{body}</Card.Description>
       </Card.Content>

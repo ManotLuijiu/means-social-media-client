@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 
 import PostCard from '../components/PostCard';
 
@@ -36,9 +36,9 @@ export default function Home() {
 
   return (
     <Grid columns={3}>
-      <Grid.Row className="prose lg:prose-xl page-title">
-        <h1>Recent Posts</h1>
-      </Grid.Row>
+      <Header as="h1" className="prose lg:prose-xl page-title">
+        โพสต์ล่าสุด
+      </Header>
       <Grid.Row>
         {data.getPosts &&
           data.getPosts.map((post) => (

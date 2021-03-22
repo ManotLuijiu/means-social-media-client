@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import ApolloProvider from './ApolloProvider';
-import './i18n';
 
 import 'semantic-ui-less/semantic.less'; // eslint-disable-line
+import './i18n';
 import './index.css';
 
 ReactDOM.render(ApolloProvider, document.getElementById('root'));
