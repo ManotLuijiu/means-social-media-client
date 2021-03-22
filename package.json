@@ -34,7 +34,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json,html}' --config ./.prettierrc",
     "test": "craco test",
     "eject": "craco eject",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "eslintConfig": {
     "extends": [
