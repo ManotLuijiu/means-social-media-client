@@ -3,8 +3,8 @@ import reportWebVitals from './reportWebVitals';
 import ApolloProvider from './ApolloProvider';
 
 import 'semantic-ui-less/semantic.less'; // eslint-disable-line
-import './i18n';
-import './index.css';
+import './utils/i18n';
+import './styles/index.css';
 
 ReactDOM.render(ApolloProvider, document.getElementById('root'));
 

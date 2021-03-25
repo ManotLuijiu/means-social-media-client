@@ -1,42 +1,25 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { Form, Button, Header } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
-export default function Register(props) {
+import useForm from '../utils/hooks';
+
+export default function Login() {
+  const history = useHistory();
+  console.log('history', history);
   const [errors, setErrors] = useState({});
-  const [values, setValues] = useState({
+
+  /* eslint-disable-next-line */
+  const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     username: '',
-    email: '',
     password: '',
-    confirmPassword: '',
   });
 
-  console.log(values);
-  const enabled =
-    values.username.length > 0 &&
-    values.email.length > 0 &&
-    values.password.length > 0 &&
-    values.confirmPassword.length > 0;
-  console.log(enabled);
-
-  const REGISTER_USER = gql`
-    mutation register(
-      $username: String!
-      $email: String!
-      $password: String!
-      $confirmPassword: String!
-    ) {
-      register(
-        registerInput: {
-          username: $username
-          email: $email
-          password: $password
-          confirmPassword: $confirmPassword
-        }
-      ) {
+  const LOGIN_USER = gql`
+    mutation login($username: String!, $password: String!) {
+      login(username: $username, password: $password) {
         id
-        email
         username
         createdAt
         token
@@ -44,14 +27,10 @@ export default function Register(props) {
     }
   `;
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
-
-  const [addUser, { loading, error }] = useMutation(REGISTER_USER, {
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
     update(_, result) {
       console.log(result);
-      props.history.push('/');
+      history.push('/');
     },
     onError(err) {
       console.log(err);
@@ -60,10 +39,9 @@ export default function Register(props) {
     variables: values,
   });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    addUser();
-  };
+  function loginUserCallback() {
+    loginUser();
+  }
 
   return (
     <section className="text-gray-600 body-font relative">
@@ -72,7 +50,7 @@ export default function Register(props) {
           <Header
             as="h1"
             className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-            Register
+            Login
           </Header>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Please enter all fields</p>
         </div>
@@ -87,16 +65,7 @@ export default function Register(props) {
                     name="username"
                     type="text"
                     value={values.username}
-                    error={!!errors.username}
-                    onChange={onChange}
-                  />
-                  <Form.Input
-                    label="Email"
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={values.email}
-                    error={!!errors.email}
+                    error={!!errors}
                     onChange={onChange}
                   />
                   <Form.Input
@@ -105,20 +74,11 @@ export default function Register(props) {
                     name="password"
                     type="password"
                     value={values.password}
-                    error={!!errors.password}
-                    onChange={onChange}
-                  />
-                  <Form.Input
-                    label="Confirm Password"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    type="password"
-                    value={values.confirmPassword}
-                    error={!!errors.confirmPassword}
+                    error={!!errors}
                     onChange={onChange}
                   />
                   <Button type="submit" primary>
-                    Register
+                    Login
                   </Button>
                 </Form>
                 {error && (
@@ -126,7 +86,7 @@ export default function Register(props) {
                     Error Please fix these then try again
                   </p>
                 )}
-                {Object.keys(errors).length > 0 && (
+                {/* {Object.keys(errors).length > 0 && (
                   <div className="ui error message">
                     <ul className="list">
                       {Object.values(errors).map((value) => (
@@ -134,7 +94,7 @@ export default function Register(props) {
                       ))}
                     </ul>
                   </div>
-                )}
+                )} */}
                 {loading && <p>Loading...</p>}
               </div>
             </div>
@@ -144,7 +104,3 @@ export default function Register(props) {
     </section>
   );
 }
-
-Register.propTypes = {
-  history: PropTypes.string.isRequired,
-};
