@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { Form, Button, Header } from 'semantic-ui-react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
+import { AuthContext } from '../context/auth';
 import useForm from '../utils/hooks';
 
 export default function Login() {
+  const context = useContext(AuthContext);
+  console.log('context', context);
   const history = useHistory();
   console.log('history', history);
   const [errors, setErrors] = useState({});
@@ -28,8 +31,9 @@ export default function Login() {
   `;
 
   const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
-    update(_, result) {
-      console.log(result);
+    update(_, { data: { login: userData } }) {
+      console.log(userData);
+      context.login(userData);
       history.push('/');
     },
     onError(err) {
@@ -86,7 +90,7 @@ export default function Login() {
                     Error Please fix these then try again
                   </p>
                 )}
-                {/* {Object.keys(errors).length > 0 && (
+                {Object.keys(errors).length > 0 && (
                   <div className="ui error message">
                     <ul className="list">
                       {Object.values(errors).map((value) => (
@@ -94,7 +98,7 @@ export default function Login() {
                       ))}
                     </ul>
                   </div>
-                )} */}
+                )}
                 {loading && <p>Loading...</p>}
               </div>
             </div>

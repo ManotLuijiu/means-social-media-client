@@ -5,18 +5,16 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import NotFound from './pages/NotFound';
 
+import AuthRoute from './utils/authRoute';
+
 export default function Routes() {
   return (
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route exact path="/register">
-        <Register />
-      </Route>
+      <AuthRoute exact path="/login" component={Login} />
+      <AuthRoute exact path="/register" component={Register} />
       <Route>
         <NotFound />
       </Route>

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { Form, Button, Header } from 'semantic-ui-react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
+import { AuthContext } from '../context/auth';
 import useForm from '../utils/hooks';
 
 export default function Register() {
+  const context = useContext(AuthContext);
   const history = useHistory();
   console.log(history);
   const [errors, setErrors] = useState({});
@@ -50,8 +52,9 @@ export default function Register() {
   `;
 
   const [addUser, { loading, error }] = useMutation(REGISTER_USER, {
-    update(_, result) {
-      console.log(result);
+    update(_, { data: { register: userData } }) {
+      console.log(userData);
+      context.login(userData);
       history.push('/');
     },
     onError(err) {
