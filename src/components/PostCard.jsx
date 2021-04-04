@@ -40,9 +40,7 @@ export default function PostCard({ data: { getPosts: posts } }) {
                         {post.username}
                       </h2>
                       <p className="leading-relaxed text-base">{post.body}</p>
-                      <Link to={`/posts/${post.id}`}>
-                        {moment(post.createdAt).startOf('day').fromNow()}
-                      </Link>
+                      <Link to={`/posts/${post.id}`}>{moment(post.createdAt).fromNow()}</Link>
                       <Card.Content extra>
                         <Button as="div" labelPosition="right" onClick={likePost}>
                           <Button color="red" basic>

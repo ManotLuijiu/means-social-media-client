@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 
 import { AuthContext } from '../context/auth';
 import LikeButton from './LikeButton';
+import DeleteButton from './DeleteButton';
 
 import useForm from '../utils/hooks';
 import FETCH_POSTS_QUERY from '../utils/graphql';
@@ -139,9 +140,7 @@ export default function PostForm({ data: { getPosts: posts } }) {
                     <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
                       {post.username}
                     </h2>
-                    <Link to={`/posts/${post.id}`}>
-                      {moment(post.createdAt).startOf('day').fromNow()}
-                    </Link>
+                    <Link to={`/posts/${post.id}`}>{moment(post.createdAt).fromNow()}</Link>
                     <p className="leading-relaxed text-base">{post.body}</p>
                     <Card.Content extra>
                       <LikeButton user={user} post={post} />
@@ -153,16 +152,7 @@ export default function PostForm({ data: { getPosts: posts } }) {
                           {post.commentCount}
                         </Label>
                       </Button>
-                      {user && user.username === post.username && (
-                        <Button
-                          icon
-                          as="div"
-                          floated="right"
-                          color="red"
-                          onClick={() => console.log('Delete post')}>
-                          <Icon name="trash" />
-                        </Button>
-                      )}
+                      {user && user.username === post.username && <DeleteButton postId={post.id} />}
                     </Card.Content>
                   </div>
                 </div>
