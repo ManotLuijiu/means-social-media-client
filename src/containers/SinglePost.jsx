@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery, useMutation } from '@apollo/client';
@@ -18,6 +18,8 @@ export default function SinglePost(props) {
   const { user } = useContext(AuthContext);
   const { postId } = props.match.params; // eslint-disable-line
   console.log('postId', postId);
+
+  const commentInputRef = useRef(null);
 
   const [commented, setComment] = useState('');
 
@@ -67,6 +69,7 @@ export default function SinglePost(props) {
   const [submitComment] = useMutation(SUBMIT_COMMENT_MUTATION, {
     update() {
       setComment('');
+      commentInputRef.current.blur();
     },
     variables: { postId, body: commented },
   });
@@ -136,6 +139,7 @@ export default function SinglePost(props) {
                       name="comment"
                       value={commented}
                       onChange={(e) => setComment(e.target.value)}
+                      ref={commentInputRef}
                     />
                     <button
                       type="submit"
