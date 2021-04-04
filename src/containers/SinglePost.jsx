@@ -11,6 +11,7 @@ import 'moment/locale/th';
 import { AuthContext } from '../context/auth';
 import LikeButton from '../components/LikeButton';
 import DeleteButton from '../components/DeleteButton';
+import MyPopup from '../utils/myPopup';
 
 moment().locale('th');
 
@@ -114,14 +115,23 @@ export default function SinglePost(props) {
             <hr />
             <Card.Content extra>
               <LikeButton user={user} post={{ id, likeCount, likes }} />
-              <Button as="div" labelPosition="right" onClick={() => console.log('comment on post')}>
-                <Button basic color="blue">
-                  <Icon name="comment" />
-                </Button>
-                <Label basic color="blue" pointing="left">
-                  {commentCount}
-                </Label>
-              </Button>
+              <MyPopup
+                content="Comment on post"
+                trigger={
+                  <Button
+                    as="div"
+                    labelPosition="right"
+                    onClick={() => console.log('comment on post')}>
+                    <Button basic color="blue">
+                      <Icon name="comment" />
+                    </Button>
+                    <Label basic color="blue" pointing="left">
+                      {commentCount}
+                    </Label>
+                  </Button>
+                }
+              />
+
               {user && user.username === username && (
                 <DeleteButton postId={id} callback={deletePostCallback} />
               )}

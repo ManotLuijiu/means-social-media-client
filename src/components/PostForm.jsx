@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { AuthContext } from '../context/auth';
 import LikeButton from './LikeButton';
 import DeleteButton from './DeleteButton';
+import MyPopup from '../utils/myPopup';
 
 import useForm from '../utils/hooks';
 import FETCH_POSTS_QUERY from '../utils/graphql';
@@ -144,14 +145,19 @@ export default function PostForm({ data: { getPosts: posts } }) {
                     <p className="leading-relaxed text-base">{post.body}</p>
                     <Card.Content extra>
                       <LikeButton user={user} post={post} />
-                      <Button labelPosition="right" as={Link} to={`/posts/${post.id}`}>
-                        <Button color="blue" basic>
-                          <Icon name="comment" />
-                        </Button>
-                        <Label basic color="blue" pointing="left">
-                          {post.commentCount}
-                        </Label>
-                      </Button>
+                      <MyPopup
+                        content="Comment on post"
+                        trigger={
+                          <Button labelPosition="right" as={Link} to={`/posts/${post.id}`}>
+                            <Button color="blue" basic>
+                              <Icon name="comment" />
+                            </Button>
+                            <Label basic color="blue" pointing="left">
+                              {post.commentCount}
+                            </Label>
+                          </Button>
+                        }
+                      />
                       {user && user.username === post.username && <DeleteButton postId={post.id} />}
                     </Card.Content>
                   </div>

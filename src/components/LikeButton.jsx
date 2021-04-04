@@ -6,6 +6,8 @@ import { Button, Icon, Label } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import MyPopup from '../utils/myPopup';
+
 export default function LikeButton({ user, post: { id, likeCount, likes } }) {
   console.log('id', id);
   console.log('likes', likes);
@@ -76,7 +78,7 @@ export default function LikeButton({ user, post: { id, likeCount, likes } }) {
 
   return (
     <Button as="div" labelPosition="right" onClick={likePost}>
-      {likeButton}
+      <MyPopup content={liked ? 'Unlike' : 'Like'} trigger={likeButton} />
       <Label basic color="red" pointing="left">
         {likeCount}
       </Label>
