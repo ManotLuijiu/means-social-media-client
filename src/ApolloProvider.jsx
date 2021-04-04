@@ -7,7 +7,8 @@ import App from './components/App';
 import { AUTH_TOKEN } from './constants';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:5000',
+  // uri: 'http://localhost:5000',
+  uri: 'https://fast-reaches-59507.herokuapp.com/',
 });
 
 const authLink = setContext((_, { headers }) => {
